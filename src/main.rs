@@ -2,11 +2,18 @@ use std::io;
 use regex::Regex;
 
 fn main() {
-    let mut input = String::new();
-    println!("Enter a word that you want to check for palindrome : ");
-    io::stdin().read_line(&mut input)
-        .expect("Failed to read line");
-    check_palindrome(input);
+    loop {
+        let mut input = String::new();
+        println!("Enter a word that you want to check for palindrome : ");
+        io::stdin().read_line(&mut input)
+            .expect("Failed to read line");
+
+        // If the input is "end" (insensitive-case), stop checking for palidrome
+        if input.trim().to_lowercase() == "end" { break; }
+
+        check_palindrome(input);
+    }
+    println!("Program ended.");
 }
 
 fn check_palindrome(input: String) {
